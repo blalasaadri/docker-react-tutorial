@@ -3,7 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t blalasaadri/docker-react-tutorial -f Dockerfile.dev .
+  - 'docker build -t blalasaadri/docker-react-tutorial -f Dockerfile.dev .'
 
 script:
-  - docker run -e CI=$CI blalasaadri/docker-react-tutorial npm run test --  --ci --coverage
+  - 'docker run -e CI=$CI blalasaadri/docker-react-tutorial npm run test --  --ci --coverage'
+
+deploy:
+  provider: 'elasticbeanstalk'
+  region: 'eu-central-1'
+  app: 'docker-react-tutorial'
+  env: 'TODO'
+  bucket_name: 'TODO'
+  bucket_path: 'docker-react-tutorial'
+  on:
+    branch: 'master'
+  access_key_id: '$AWS_ACCESS_KEY'
+  secret_access_key:
+    secure: '$AWS_SECRET_KEY'
