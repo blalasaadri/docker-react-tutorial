@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t blalasaadri/docker-react-tutorial -f Dockerfile.dev .
+
+script:
+  - docker run blalasaadri/docker-react-tutorial npm run test -- --coverage
