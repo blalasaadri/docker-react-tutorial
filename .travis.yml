@@ -6,4 +6,4 @@ before_install:
   - docker build -t blalasaadri/docker-react-tutorial -f Dockerfile.dev .
 
 script:
-  - docker run blalasaadri/docker-react-tutorial npm run test -- --coverage
+  - docker run -e CI=$CI blalasaadri/docker-react-tutorial npm run test --  --ci --coverage
